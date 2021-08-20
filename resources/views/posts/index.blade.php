@@ -33,7 +33,7 @@
                 <tr>
                     <td>{{$post->id}}</td>
                     <td>{{$post->title}}</td>
-                    <td>{{$post->name}}</td>
+                    <td>{{$post->user->name}}</td>
                     <td>{{$post->created_at}}</td>
                     <td>
                         <a class="btn btn-success" href="/posts/{{$post->id}}">show</a>

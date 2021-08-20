@@ -30,7 +30,7 @@
                   </div>
                   <div class="mb-3">
                     <label class="form-label">Post Creator</label>
-                    <input type="text" class="form-control" name="name" value="{{$post->name}}">
+                    <input type="text" class="form-control" name="name" value="{{$post->user->name}}">
                   </div>
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary" id="btn">Update</button>

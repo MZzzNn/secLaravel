@@ -28,8 +28,8 @@
               <div class="card">
                 <div class="card-header">Post Crator info </div>
                 <div class="card-body">
-                  <p><b>Name :- </b>{{$post->name}}</p>
-                  <p><b>E-mail :- </b>{{$post->name}}@mail.com</p>
+                  <p><b>Name :- </b>{{$post->user->name}}</p>
+                  <p><b>E-mail :- </b>{{$post->user->email}}</p>
                   <p><b>Created At :- </b>{{$post->created_at}}</p>
                   <br>
                   <b style="color: red">(Search in carbon documention to know how to format it like this) in lab 2</b>

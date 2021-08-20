@@ -28,10 +28,17 @@
                     <label class="form-label">Description</label>
                     <textarea class="form-control" rows="3" name="description"></textarea>
                   </div>
-                  <div class="mb-3">
+                  {{-- <div class="mb-3">
                     <label class="form-label">Post Creator</label>
                     <input type="text" class="form-control" name="name">
-                  </div>
+                  </div> --}}
+                  {{-- <div>
+                      <select name="users_id">
+                          @foreach ($users as $user)
+                              <option value="{{$user->id}}">{{$user->name}}</option>
+                          @endforeach
+                      </select>
+                  </div> --}}
                   <div class="col-12">
                     <button type="submit" class="btn btn-primary" id="btn">Create</button>
                   </div>

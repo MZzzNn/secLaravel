@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class PostController extends Controller
 {
@@ -14,6 +18,7 @@ class PostController extends Controller
      */
     public function index()
     {
+
         $posts=Post::all();
         return view("posts.index",compact("posts"));
     }
@@ -25,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("posts.create");
+        $users=User::all();
+        //dd($users);
+        return view("posts.create",compact('users'));
     }
 
     /**
@@ -34,21 +41,19 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StorePostRequest $request)
     {
-        $request->validate(
-            [
-                'name' => ['required', 'max:255'],
-                'title' => ['required', 'max:255'],
-                'description' => ['required', 'max:255'],
-
-            ]
-        );
+        // $request->validate(
+        //     [
+               
+        //     ]
+        // );
         Post::create(
             [
                 'title'=>$request->title,
                 'name'=>$request->name,
                 'description'=>$request->description,
+                'user_id'=>Auth::id()
             ]
         );
          return redirect("posts");
@@ -86,21 +91,15 @@ class PostController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(StorePostRequest $request,$id)
     {
-        $request->validate(
-            [
-                'name' => ['required', 'max:255'],
-                'title' => ['required', 'max:255'],
-                'description' => ['required', 'max:255'],
-
-            ]
-        );
         $post=Post::find($id);
-        $post->name= $request->name;
+        $user=User::find($post->user_id);
+        $user->name= $request->name;
         $post->title= $request->title;
         $post->description= $request->description;
         $post->save();
+        $user->save();
         return redirect("/posts");
     }
 
